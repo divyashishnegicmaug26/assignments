@@ -1,0 +1,63 @@
+assignment 4 
+select * from emp
+    -> cross join dept;
+
+--------------------------------------------------------
+select * from emp
+    -> inner join dept on dept.id = emp.id;
+
+-----------------------------------------------------------
+select * from emp
+    -> left join dept on dept.id = emp.id;
+
+-----------------------------------------------------------
+select * from emp
+    -> right join
+    -> dept on dept.id = emp.id;
+
+------------------------------------------------------------
+select * from emp
+    -> natural join dept;
+
+--------------------------------------------------------------
+create table empbackup like emp;
+
+insert into empbackup
+select * from emp;
+
+---------------------------------------------------------------
+create table projectarchieve like project;
+
+insert into projectarchieve
+    -> select * from project;
+
+
+---------------------------------------------------------------
+
+alter table emp
+    -> modify empId int primary key auto_increment;
+
+------------------------------------------------------------------
+ select * from emp
+    -> where salary >(select avg(salary) from emp);
+
+-----------------------------------------------------------------
+
+select * from emp
+    -> where location = (select location from emp
+    -> where location = 'mumbai');
+---------------------------------------------------------------------
+select * from emp
+group by depit
+    -> having count(deptid) in (select count(deptid) from emp
+    -> group by deptid
+    -> having count(deptid) >5);
+---------------------------------------------------------------------
+select * from emp
+    -> where salary = (select max(salary) from emp);
+---------------------------------------------------------------------
+SELECT e1.*,
+       e2.*
+FROM emp e1
+JOIN emp e2
+ON e1.deptid = e2.empid;
