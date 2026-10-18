@@ -1,0 +1,89 @@
+assgn 3
+like syntax 
+select * from employee
+    -> where employee.name like 'A%';
+
+
+
+select employee.location , count(location) from employee
+    -> group by location
+    -> having count(location)>1;
++----------+-----------------+
+| location | count(location) |
++----------+-----------------+
+| uk       |               3 |
+| mumbai   |               3 |
++----------+-----------------+
+
+
+
+
+matching rows with join
+> select employee.location,count(location)
+    -> from employee
+    -> join dept on dept.eid=employee.id
+    -> group by employee.location
+    -> having count(location)>1;
+
+| location | count(location) |
++----------+-----------------+
+| uk       |               4 |
+
+
+
+
+
+select distinct employee.name from employee;
+
+
+
+
+select employee.salary,dept.did,sum(employee.salary) from employee
+    -> join dept on dept.eid=employee.id
+    -> group by dept.did
+    -> having sum(employee.salary)>35000;
++-----------+-----+----------------------+
+| salary    | did | sum(employee.salary) |
++-----------+-----+----------------------+
+|  50000.00 |  16 |             50000.00 |
+|  50000.00 |  17 |             50000.00 |
+| 600000.00 |  18 |            600000.00 |
+| 600000.00 |  19 |            600000.00 |
+|  40300.00 |  20 |             40300.00 |
++-----------+-----+----------------------+
+
+
+
+
+
+select * from employee
+    -> where salary is not null;
++----+--------+----------+-----------+
+| id | name   | location | salary    |
++----+--------+----------+-----------+
+|  1 | ashu   | uk       |  50000.00 |
+|  2 | shruti | uk       | 600000.00 |
+|  3 | kruti  | uk       |   6500.00 |
+|  4 | rp     | mumbai   |   4000.00 |
+|  5 | vishal | mumbai   |  40300.00 |
+|  6 | vikram | mumbai   |  40300.00 |
+
+
+
+
+
+select * from eployee
+    -> where salary is null;
+
+
+
+
+
+select employee.name,employee.id,dept.did from employee
+    -> join dept on dept.eid=employee.id
+    -> having dept.did in (10,20,30);
++--------+----+-----+
+| name   | id | did |
++--------+----+-----+
+| vikram |  6 |  20 |
++--------+----+-----+
