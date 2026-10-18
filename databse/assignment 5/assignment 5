@@ -1,0 +1,49 @@
+                                  MySQL Stored Procedure – Assignment
+
+even and odd
+
+delimiter //
+ create procedure checkeven(in a int)
+     begin
+    declare b int default 2;
+    if mod(a,b)=0 then
+    select 'prime';
+    else
+     select 'mot prime';
+    end if;
+     end //
+delimiter ;
+
+-------------------------------------------------------------------------
+simple interest 
+delimiter //
+create procedure si(in a int,in b int,in c int,out cost int)
+begin
+
+select (a*b*c)/100 into cost;
+end //
+
+delimiter ;
+
+--------------------------------------------------------------------------
+calculate_grade
+delimiter //
+create procedure grade(in a int,in b varchar(20),in c int)
+begin 
+if c>=90 and c<=100 then
+select a,b,c,'A+';
+elseif c>=80 then 
+select a,b,c,'A';
+elseif c>=70 then
+select a,b,c,'b';
+elseif c>=60 then 
+select a,b,c,'c';
+elseif c>= 50 then
+select a,b,c,'d';
+else 
+select 'fail' ;
+end if;
+end //
+delimiter ;
+
+----------------------------------------------------------------------------
